@@ -65,10 +65,16 @@ class VendingMachine {
   getItem() {
     if (this.selectedRow !== undefined && this.selectedColumn !== undefined) {
       const item = this.inventory[this.selectedRow][this.selectedColumn];
-      if (item.price <= this.balance) {
+      if (item.price <= this.balance && item.count > 0) {
         item["count"] -= 1;
         console.log("Here is your " + item["name"]);
         return this.balance - item.price;
+      } else if (item.price > this.balance) {
+        console.log("No enough money");
+        return this.balance;
+      } else if (item.count === 0) {
+        console.log("Sold-out!");
+        return this.balance;
       }
     }
   }
