@@ -11,7 +11,7 @@
 
 class VendingMachine {
   constructor(
-    balance = 0,
+    bal = 0,
     till = {
       10: 0,
       50: 0,
@@ -21,14 +21,25 @@ class VendingMachine {
     selectedRow,
     selectedColumn
   ) {
-    this.balance = balance;
+    this.bal = bal;
     this.till = till;
     this.selectedRow = selectedRow;
     this.selectedColumn = selectedColumn;
   }
 
-  balance() {
-    return this.balance;
+  // get balance() {
+  //   for (const i in this.till) {
+  //     this.balance += this.till[coin] * coin;
+  //   }
+  //   return this.balance;
+  // }
+
+  get balance() {
+    return this.bal;
+  }
+
+  set balance(balance) {
+    this.bal = balance;
   }
 
   insertCoin(coin) {

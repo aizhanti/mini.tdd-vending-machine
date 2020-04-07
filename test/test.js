@@ -116,4 +116,29 @@ describe("vending machine", () => {
     expect(machine.getItem()).to.be.equal(50);
     expect(machine.inventory[0][0]["count"]).to.be.equal(5);
   });
+
+  it("Given that the program has just started, when the balance is read, then it should read zero", () => {
+    // Setup
+    const machine = new VendingMachine();
+
+    // Assert
+    expect(machine.balance).to.deep.equal(0);
+  });
+
+  it("Should store the coin been put in", () => {
+    // Setup
+    const machine = new VendingMachine();
+    machine.insertCoin(50);
+    machine.insertCoin(50);
+    machine.insertCoin(10);
+    machine.insertCoin(100);
+    // Assert
+    expect(machine.balance).to.deep.equal(210);
+    expect(machine.till).to.deep.equal({
+      10: 1,
+      50: 2,
+      100: 1,
+      500: 0,
+    });
+  });
 });
